@@ -34,3 +34,14 @@ The Flask test client verified these submissions with CSRF enabled:
 | Yixin Zha | Non-UofT email containing `@` | Need to enter UofT email |
 
 Browser verification and the Activity 1.4 screenshot are pending.
+
+
+## Screenshots
+
+<img width="508" height="282" alt="Screenshot 2026-09-28 at 4 36 43 PM" src="https://github.com/user-attachments/assets/b6c3e603-da7e-4785-b45d-5f0bb28cce80" />
+
+<img width="642" height="501" alt="Screenshot 2026-09-28 at 4 59 04 PM" src="https://github.com/user-attachments/assets/1bbed8c0-47aa-4730-8b7e-629127aa6181" />
+
+<img width="614" height="451" alt="Screenshot 2026-09-28 at 4 59 21 PM" src="https://github.com/user-attachments/assets/e725737f-4c48-4287-8fab-7712b7573bf9" />
+
+<img width="649" height="551" alt="Screenshot 2026-09-28 at 4 59 34 PM" src="https://github.com/user-attachments/assets/0c141c06-9d2b-47d3-9460-7296a9040c19" />
