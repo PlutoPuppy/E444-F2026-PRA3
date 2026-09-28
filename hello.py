@@ -16,6 +16,7 @@ moment = Moment(app)
 
 class NameForm(FlaskForm):
     name = StringField('What is your name?', validators=[DataRequired()])
+    email = StringField('What is your email address?')
     submit = SubmitField('Submit')
 
 
@@ -23,13 +24,20 @@ class NameForm(FlaskForm):
 def index():
     form = NameForm()
     if form.validate_on_submit():
-        old_name = session.get('name')
-        if old_name is not None and old_name != form.name.data:
-            flash('Looks like you have changed your name!')
-        session['name'] = form.name.data
+        email = (form.email.data or '').strip()
+        if '@' not in email:
+            flash('Missing @ in email address')
+        elif 'utoronto' not in email.lower():
+            flash('Need to enter UofT email')
+        else:
+            old_name = session.get('name')
+            if old_name is not None and old_name != form.name.data:
+                flash('Looks like you have changed your name!')
+            session['name'] = form.name.data
+            session['email'] = email
         return redirect(url_for('index'))
     return render_template('index.html', form=form, name=session.get('name'),
-                           current_time=datetime.utcnow())
+                           email=session.get('email'), current_time=datetime.utcnow())
 
 
 @app.route('/user/<name>')
