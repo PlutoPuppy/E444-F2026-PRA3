@@ -34,3 +34,22 @@ The Flask test client verified these submissions with CSRF enabled:
 | Yixin Zha | Non-UofT email containing `@` | Need to enter UofT email |
 
 Browser verification and the Activity 1.4 screenshot are pending.
+
+## Activity 2.4: Build and run with Docker
+
+Run these commands from the repository root with Docker Desktop running:
+
+```sh
+docker build -t ece444-lab3 .
+docker run -d --name ece444-lab3 -p 127.0.0.1:5002:5000 ece444-lab3
+```
+
+Open http://localhost:5002. The container runs the lab's Flask development server
+on port 5000; host port 5002 avoids conflicts with the local Flask app.
+Dependencies are installed from the root `requirements.txt`.
+
+```sh
+docker logs ece444-lab3
+docker stop ece444-lab3
+docker start ece444-lab3
+```
