@@ -83,3 +83,19 @@ docker run -d --name ece444-lab3-chat -p 127.0.0.1:5003:5000 ece444-lab3:chat
 ```
 
 Open http://localhost:5003.
+
+## Screenshots of work
+
+<img width="508" height="282" alt="Screenshot 2026-09-28 at 4 36 43 PM" src="https://github.com/user-attachments/assets/7da69ec1-c433-4d9e-acae-d92667f31707" />
+
+<img width="649" height="551" alt="Screenshot 2026-09-28 at 4 59 34 PM" src="https://github.com/user-attachments/assets/e6d6866d-d75f-4ca3-8aba-755903f07eea" />
+
+<img width="572" height="467" alt="Screenshot 2026-09-28 at 4 59 11 PM" src="https://github.com/user-attachments/assets/69a583fc-990f-4e03-b834-91e1ad599468" />
+
+<img width="642" height="501" alt="Screenshot 2026-09-28 at 4 59 04 PM" src="https://github.com/user-attachments/assets/d5c83b68-3b51-4d33-85e8-af84876105e8" />
+
+<img width="703" height="598" alt="Screenshot 2026-09-29 at 9 40 18 AM" src="https://github.com/user-attachments/assets/a432b181-8526-46aa-8890-42a55504db23" />
+
+<img width="614" height="451" alt="Screenshot 2026-09-28 at 4 59 21 PM" src="https://github.com/user-attachments/assets/de37ae1a-d321-46df-9175-c5c047a0f462" />
+
+
