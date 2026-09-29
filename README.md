@@ -53,3 +53,33 @@ docker logs ece444-lab3
 docker stop ece444-lab3
 docker start ece444-lab3
 ```
+
+## Activity 2.5: Chatbot with session memory
+
+Submitting a name and valid UofT email opens `/chat`. Enter `My name is Alice.`
+and click **Send**, then send `What is my name?`. The replies are
+`Nice to meet you, Alice!` and `Your name is Alice.`
+
+The chatbot stores the conversational name in Flask's `session['chat_name']`,
+separately from the name submitted on the Home page. Memory survives requests
+and page reloads in the same browser session. The displayed conversation is
+kept on the page only and resets on reload.
+
+Click **Logout** to clear the entire session and return Home. Submit the name
+and UofT email again, then ask `What is my name?`. The chatbot replies
+`You haven't told me your name yet.`
+
+Run the automated checks (including logout, session isolation, and CSRF):
+
+```sh
+.venv/bin/python -m unittest discover -s tests -v
+```
+
+Build and run the chatbot version separately:
+
+```sh
+docker build -t ece444-lab3:chat .
+docker run -d --name ece444-lab3-chat -p 127.0.0.1:5003:5000 ece444-lab3:chat
+```
+
+Open http://localhost:5003.

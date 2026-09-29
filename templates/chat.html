@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block title %}Chat - Flasky{% endblock %}
+
+{% block page_content %}
+<div class="page-header">
+    <h1>Chat with Flasky</h1>
+    <p>Welcome, {{ session['name'] }}! Your UofT email is {{ session['email'] }}.</p>
+</div>
+<p>Try “My name is Alice.” followed by “What is my name?”</p>
+<div id="conversation" class="well" role="log" aria-live="polite" aria-label="Conversation"></div>
+<form id="chat-form">
+    <div class="form-group">
+        <label for="message">Message</label>
+        <input id="message" class="form-control" type="text" maxlength="500" required autocomplete="off">
+    </div>
+    <button id="send" class="btn btn-primary" type="submit">Send</button>
+</form>
+<hr>
+<form method="post" action="{{ url_for('logout') }}">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <button class="btn btn-default" type="submit">Logout</button>
+</form>
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+<script>
+const form = document.getElementById('chat-form');
+const input = document.getElementById('message');
+const send = document.getElementById('send');
+const conversation = document.getElementById('conversation');
+function appendMessage(speaker, text) {
+    const paragraph = document.createElement('p');
+    paragraph.textContent = speaker + ': ' + text;
+    conversation.appendChild(paragraph);
+}
+form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const message = input.value.trim();
+    if (!message) return;
+    appendMessage('You', message);
+    send.disabled = true;
+    try {
+        const response = await fetch({{ url_for('chat') | tojson }}, {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json', 'X-CSRFToken': {{ csrf_token() | tojson }}},
+            body: JSON.stringify({message})
+        });
+        const data = await response.json();
+        appendMessage('Bot', data.reply || 'Unable to send your message. Please reload and try again.');
+        if (response.ok) input.value = '';
+    } catch (error) {
+        appendMessage('Bot', 'Unable to send your message. Please reload and try again.');
+    } finally {
+        send.disabled = false;
+        input.focus();
+    }
+});
+</script>
+{% endblock %}
